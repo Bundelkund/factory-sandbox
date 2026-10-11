@@ -1,0 +1,28 @@
+# Factory-CI (F-05): wiederholt check.sh und die Tests des Testing-Loops in einem frischen Runner.
+# Eingerichtet einmalig vom Mac (Konto Bundelkund, 2026-10-12). Der Factory-Token hat kein workflows-Recht,
+# und factory-dev-round.sh lehnt Pfade unter .github/ ab: die Factory kann ihre eigene Pruefung nicht umschreiben.
+name: factory-ci
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  factory-tests:
+    if: startsWith(github.head_ref, 'factory/')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: check.sh (Pruefer aus dem Issue)
+        run: bash check.sh
+      - name: AK-Tests (factory/tests, geschrieben vom Testing-Loop)
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          tests=(factory/tests/test_*.py)
+          [ "${#tests[@]}" -gt 0 ] || { echo "keine Tests unter factory/tests/"; exit 1; }
+          python3 --version
+          for f in "${tests[@]}"; do python3 -m unittest -v "$f"; done
