@@ -1,6 +1,8 @@
 # Factory-CI (F-05): wiederholt check.sh und die Tests des Testing-Loops in einem frischen Runner.
 # Eingerichtet einmalig vom Mac (Konto Bundelkund, 2026-10-12). Der Factory-Token hat kein workflows-Recht,
 # und factory-dev-round.sh lehnt Pfade unter .github/ ab: die Factory kann ihre eigene Pruefung nicht umschreiben.
+# F-06: Der Job heisst `factory-ci`, weil GitHub den Check nach dem Job benennt (nicht nach dem Workflow) und der
+# Branch-Schutz auf main genau diesen Namen als Pflicht-Check verlangt. Umbenennen bricht den Merge-Weg.
 name: factory-ci
 on:
   pull_request:
@@ -9,6 +11,7 @@ permissions:
   contents: read
 jobs:
   factory-tests:
+    name: factory-ci
     if: startsWith(github.head_ref, 'factory/')
     runs-on: ubuntu-latest
     timeout-minutes: 10
