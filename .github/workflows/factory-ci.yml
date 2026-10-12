@@ -7,6 +7,8 @@
 # Takt, #50/#51, PR #61). Ohne Pruefskript (Variante B: Spec vom Testing-Pruefer abgenommen) entfaellt der Schritt.
 # Eigene Tests des Zweigs (factory/tests/test_<n>_*.py) sind Pflicht: sonst waere ein Zweig ohne eigene Tests gruen,
 # weil die Tests gemergter Issues bestehen (Befund F-06, PR #49).
+# F-12: Wissens-PR (Zweig factory/knowledge-<n>) aendert nur factory/knowledge.md -> statt Tests eine unabhaengige
+# Formpruefung hier im Runner. Regel-Vorschlag (factory/proposal-<n>-<kat>) ist hier immer rot: nie mergen.
 name: factory-ci
 on:
   pull_request:
@@ -23,16 +25,36 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 2
       - name: Issue-Nummer aus dem Zweig
         run: |
           n="${GITHUB_HEAD_REF#factory/}"
+          if [[ "$n" =~ ^knowledge-[0-9]+$ ]]; then
+            echo "WISSEN=1" >> "$GITHUB_ENV"; echo "ISSUE=${n#knowledge-}" >> "$GITHUB_ENV"; exit 0
+          fi
+          if [[ "$n" == proposal-* ]]; then echo "Regel-Vorschlag (F-12): nie mergen, Florian uebernimmt von Hand"; exit 1; fi
           [[ "$n" =~ ^[0-9]+$ ]] || { echo "Zweig $GITHUB_HEAD_REF ist kein factory/<nummer>"; exit 1; }
           echo "ISSUE=$n" >> "$GITHUB_ENV"
+      - name: Wissens-PR (F-12) - nur factory/knowledge.md, genau ein neuer Eintrag im festen Format
+        if: env.WISSEN == '1'
+        run: |
+          set -euo pipefail
+          geaendert="$(git diff --name-only HEAD^1 HEAD)"
+          [ "$geaendert" = "factory/knowledge.md" ] || { echo "Wissens-PR aendert: $geaendert"; exit 1; }
+          if grep -E '^- ' factory/knowledge.md | grep -vE '^- #[0-9]{1,6} \| [0-9]{4}-[0-9]{2}-[0-9]{2} \| (umgebung|modell-antwort|spec|design|test|gate|preview|budget) \| [^|#<>`]{10,200}$'; then
+            echo "Zeile(n) ausserhalb des festen Formats"; exit 1
+          fi
+          neu="$(git diff -U0 HEAD^1 HEAD -- factory/knowledge.md | grep -cE '^\+- #' || true)"
+          eigen="$(git diff -U0 HEAD^1 HEAD -- factory/knowledge.md | grep -cE "^\+- #${ISSUE} \|" || true)"
+          [ "$neu" = 1 ] && [ "$eigen" = 1 ] || { echo "nicht genau ein neuer Eintrag fuer #${ISSUE} (neu=$neu)"; exit 1; }
+          echo "Wissens-PR ok: 1 Eintrag fuer #${ISSUE}"
       - name: check.sh (Pruefer aus dem Issue, falls es eins hat)
+        if: env.WISSEN != '1'
         run: |
           f="factory/checks/${ISSUE}/check.sh"
           if [ -f "$f" ]; then bash "$f"; else echo "kein $f (Variante B: Testing-Loop ist der Pruefer)"; fi
       - name: AK-Tests (factory/tests, geschrieben vom Testing-Loop)
+        if: env.WISSEN != '1'
         run: |
           set -euo pipefail
           shopt -s nullglob
