@@ -1,0 +1,13 @@
+{
+  "issue": 50,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "MISSION.md, Ziele: Anlegen einer Datei mit festem Inhalt (`ci.txt`) ist eine kleine, in einer Dev-Runde loesbare Aufgabe. Es gibt keine Netzzugriffe, kein Loeschen und keine Aenderung an `factory/` oder `.github/` (RULES.md, protected_paths); das absichtlich in CI scheiternde check.sh ist nur eine Pruefung als Uebung, also normale Uebungsaufgabe (P2).",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.008402,
+  "ts": "2026-10-12T08:40:10Z"
+}
