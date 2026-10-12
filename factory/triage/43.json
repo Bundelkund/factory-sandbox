@@ -1,0 +1,13 @@
+{
+  "issue": 43,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Das Anlegen einer Datei mit festem Inhalt ist laut MISSION.md unter Ziele (Kleine Text- und Codeaufgaben) ausdrücklich erlaubt. Die Aufgabe berührt weder Nicht-Ziele noch Verbote oder rote Themen aus RULES.md, ist in einer Dev-Runde lösbar und durch check.sh prüfbar; es handelt sich um eine normale Übungsaufgabe (P2).",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.00788,
+  "ts": "2026-10-12T08:20:10Z"
+}
