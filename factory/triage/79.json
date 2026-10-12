@@ -1,0 +1,13 @@
+{
+  "issue": 79,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Eine einzelne Datei mit festem Inhalt anzulegen gehoert zu den Zielen in MISSION.md (kleine Text- und Codeaufgaben) und verletzt weder Nicht-Ziele noch Verbote aus RULES.md. Die Abweichung zwischen Inhalt und AK1 (Gross- oder Kleinschreibung) ist ein fachliches Detail, das der Requirement-Loop klaert; es ist keine Frage der Mission.",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 2,
+  "cost_usd": 0.024256,
+  "ts": "2026-10-12T09:56:40Z"
+}
