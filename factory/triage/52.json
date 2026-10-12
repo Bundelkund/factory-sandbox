@@ -1,0 +1,13 @@
+{
+  "issue": 52,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Eine Datei `gruss.txt` mit festem Inhalt anzulegen ist laut MISSION.md (Ziele: \"Dateien mit festem Inhalt anlegen\") ausdruecklich erwuenscht. Es gibt kein Netz, keine Loeschung und keine Aenderung an `factory/` oder `.github/`; die Aufgabe ist in einer Dev-Runde loesbar und per `check.sh` pruefbar, also normale Uebungsaufgabe (P2, gruen laut RULES.md).",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.008132,
+  "ts": "2026-10-12T09:05:30Z"
+}
