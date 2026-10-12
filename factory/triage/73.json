@@ -1,0 +1,13 @@
+{
+  "issue": 73,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Das Anlegen einer Textdatei mit festem Inhalt ist laut MISSION.md (Ziele: \"Dateien mit festem Inhalt anlegen\") ein vorgesehenes Uebungsthema. Es verletzt weder Nicht-Ziele noch Verbote aus RULES.md, ist in einer Dev-Runde loesbar und durch die AK pruefbar; normale Uebungsaufgabe, daher P2.",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.008482,
+  "ts": "2026-10-12T09:52:59Z"
+}
