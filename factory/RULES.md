@@ -40,3 +40,5 @@ Veroeffentlichung und Deploy. Ein rotes Issue geht nie in den Dev-Loop, auch nic
 
 - `P0`: Factory steht oder richtet Schaden an · `P1`: blockiert eine laufende Abnahme ·
   `P2`: normale Uebungsaufgabe · `P3`: nice to have.
+
+<!-- F-06 P1: Hand-Zweig aendert geschuetzte Regeldatei (Gate-Probe) -->
