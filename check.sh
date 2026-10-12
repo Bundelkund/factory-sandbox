@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
-test "$(cat merge.txt)" = "merge gruen"
+test "$(cat ci.txt)" = "ci rot"
+test -z "${CI:-}"
