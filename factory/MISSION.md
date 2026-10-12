@@ -18,7 +18,8 @@ arbeitet, nicht im Ergebnis der Aufgaben.
 
 - Kleine Text- und Codeaufgaben: Dateien mit festem Inhalt anlegen, kleine Python- oder Shell-Skripte ohne
   Abhaengigkeiten, kleine Aenderungen an Dateien, die die Factory selbst angelegt hat.
-- Jede Aufgabe ist in einer Dev-Runde loesbar und durch `check.sh` und Akzeptanzkriterien pruefbar.
+- Jede Aufgabe ist in einer Dev-Runde loesbar und durch Akzeptanzkriterien pruefbar: mit `check.sh` im Issue oder,
+  ohne `check.sh`, mit AK, die der Testing-Pruefer abgenommen hat (F-07b).
 
 ## Nicht-Ziele (wird abgelehnt)
 

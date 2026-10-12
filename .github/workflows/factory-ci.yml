@@ -1,8 +1,12 @@
-# Factory-CI (F-05): wiederholt check.sh und die Tests des Testing-Loops in einem frischen Runner.
+# Factory-CI (F-05): wiederholt das Pruefskript des Issues und die Tests des Testing-Loops in einem frischen Runner.
 # Eingerichtet einmalig vom Mac (Konto Bundelkund, 2026-10-12). Der Factory-Token hat kein workflows-Recht,
 # und factory-dev-round.sh lehnt Pfade unter .github/ ab: die Factory kann ihre eigene Pruefung nicht umschreiben.
 # F-06: Der Job heisst `factory-ci`, weil GitHub den Check nach dem Job benennt (nicht nach dem Workflow) und der
 # Branch-Schutz auf main genau diesen Namen als Pflicht-Check verlangt. Umbenennen bricht den Merge-Weg.
+# F-07b: Pruefskript je Issue unter factory/checks/<n>/check.sh (in der Wurzel kollidierten zwei Issues im selben
+# Takt, #50/#51, PR #61). Ohne Pruefskript (Variante B: Spec vom Testing-Pruefer abgenommen) entfaellt der Schritt.
+# Eigene Tests des Zweigs (factory/tests/test_<n>_*.py) sind Pflicht: sonst waere ein Zweig ohne eigene Tests gruen,
+# weil die Tests gemergter Issues bestehen (Befund F-06, PR #49).
 name: factory-ci
 on:
   pull_request:
@@ -19,13 +23,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: check.sh (Pruefer aus dem Issue)
-        run: bash check.sh
+      - name: Issue-Nummer aus dem Zweig
+        run: |
+          n="${GITHUB_HEAD_REF#factory/}"
+          [[ "$n" =~ ^[0-9]+$ ]] || { echo "Zweig $GITHUB_HEAD_REF ist kein factory/<nummer>"; exit 1; }
+          echo "ISSUE=$n" >> "$GITHUB_ENV"
+      - name: check.sh (Pruefer aus dem Issue, falls es eins hat)
+        run: |
+          f="factory/checks/${ISSUE}/check.sh"
+          if [ -f "$f" ]; then bash "$f"; else echo "kein $f (Variante B: Testing-Loop ist der Pruefer)"; fi
       - name: AK-Tests (factory/tests, geschrieben vom Testing-Loop)
         run: |
           set -euo pipefail
           shopt -s nullglob
+          eigene=(factory/tests/test_"${ISSUE}"_*.py)
+          [ "${#eigene[@]}" -gt 0 ] || { echo "keine eigenen Tests unter factory/tests/test_${ISSUE}_*.py"; exit 1; }
           tests=(factory/tests/test_*.py)
-          [ "${#tests[@]}" -gt 0 ] || { echo "keine Tests unter factory/tests/"; exit 1; }
           python3 --version
           for f in "${tests[@]}"; do python3 -m unittest -v "$f"; done
