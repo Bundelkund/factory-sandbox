@@ -1,0 +1,13 @@
+{
+  "issue": 91,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Das Anlegen einer Datei mit festem Inhalt ist laut MISSION.md (Ziele: 'Dateien mit festem Inhalt anlegen') ausdrücklich erwünscht. Der Pfad `canary/` liegt ausserhalb von `factory/` und `.github/` und damit ausserhalb der protected_paths in RULES.md. Es werden nichts gelöscht, kein Netzwerk genutzt und kein rotes Thema berührt. Die Aufgabe passt in eine Dev-Runde und ist per check.sh prüfbar.",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.009116,
+  "ts": "2026-10-14T06:40:08Z"
+}
