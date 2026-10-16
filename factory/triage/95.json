@@ -1,0 +1,13 @@
+{
+  "issue": 95,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "MISSION.md, Ziele: Dateien mit festem Inhalt anlegen, in einer Dev-Runde loesbar und per check.sh pruefbar. Es werden nur zwei neue Dateien unter canary/nacht-2/ angelegt, ohne Netzwerk, Loeschen oder Zugriff auf protected_paths; laut RULES.md ist das eine normale Uebungsaufgabe (gruen, P2).",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.008752,
+  "ts": "2026-10-16T01:05:07Z"
+}
