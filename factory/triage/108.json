@@ -1,0 +1,13 @@
+{
+  "issue": 108,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "MISSION.md, Ziele: Anlegen einer Datei mit festem Inhalt ist eine kleine Textaufgabe, die in einer Dev-Runde loesbar ist und per check.sh pruefbar. Kein Nicht-Ziel und kein Verbot aus RULES.md betroffen (kein Netzwerk, kein Loeschen, keine protected_paths); normale Uebungsaufgabe (P2), Risikoklasse gruen.",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.008494,
+  "ts": "2026-10-21T12:16:40Z"
+}
