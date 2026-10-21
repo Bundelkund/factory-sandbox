@@ -1,6 +1,6 @@
 # Testing-Bericht Issue #113
 
-- Urteil: **pass** · Dev-Runde 3 · Dev-Stand `3d00724`
+- Urteil: **pass** · Dev-Runde 1 · Dev-Stand `434d19f`
 - Tests geschrieben von `qwen/qwen3-coder-next` aus den Akzeptanzkriterien des Issues (ohne Dev-Code)
 - Ausgefuehrt je Test in einem Wegwerf-Container (Repo nur lesend, ohne Netz), Urteil auf dem Wirt; nachstellen im Repo-Wurzelverzeichnis:
   `for f in factory/tests/test_*.py; do python3 -m unittest -v "$f"; done`
