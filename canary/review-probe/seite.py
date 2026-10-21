@@ -1,2 +1,4 @@
+import html
+
 def ueberschrift(name):
-    return f'<h1>{name}</h1>'
+    return '<h1>' + html.escape(str(name)) + '</h1>'
