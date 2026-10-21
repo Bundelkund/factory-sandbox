@@ -1,0 +1,15 @@
+{
+  "issue": 113,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Passt zu den Zielen in MISSION.md: ein kleines Python-Skript ohne Abhaengigkeiten, als neue Datei angelegt, mit check.sh pruefbar. Es beruehrt weder Nicht-Ziele noch Verbote aus RULES.md und keinen protected_path.",
+  "size": "S",
+  "size_basis": "Eine neue Datei mit einer einzigen Funktion, deutlich unter 50 Zeilen.",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.009478,
+  "ts": "2026-10-21T13:11:22Z"
+}
