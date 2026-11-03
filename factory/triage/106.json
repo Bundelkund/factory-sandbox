@@ -1,0 +1,13 @@
+{
+  "issue": 106,
+  "repo": "Bundelkund/factory-sandbox",
+  "verdict": "accept",
+  "priority": "P2",
+  "risk_class": "gruen",
+  "reason": "Kleines Bash-Skript ohne Abhaengigkeiten, neue Datei unter canary/nacht-4/, loesbar in einer Dev-Runde und mit check.sh sowie AK pruefbar (MISSION.md Ziele: kleine Shell-Skripte, Dateien anlegen). Beruehrt weder Nicht-Ziele noch protected_paths oder rote Themen aus RULES.md; normale Uebungsaufgabe, daher P2.",
+  "stage": 2,
+  "model": "anthropic/claude-sonnet-5.5",
+  "tries": 1,
+  "cost_usd": 0.009386,
+  "ts": "2026-10-21T12:15:08Z"
+}
